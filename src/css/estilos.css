@@ -1,0 +1,27 @@
+body{
+    display: flex;
+    justify-content: center;
+    padding-top: 3rem;
+    font-family: sans-serif;
+    color: #4a4a4a;
+}
+img{
+    width: 100%;
+}
+.cursos{
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+/* CARD */
+.card{
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+.card:hover{
+    box-shadow: 5px 3px 10px rgb(123, 123, 123);
+}
