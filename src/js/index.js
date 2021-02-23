@@ -81,6 +81,7 @@ const mostrarUltimoCursoAñadido = () =>
 };
 
 mostrarUltimoCursoAñadido();
+mostrarEstadisticas();
 
 const activarTab = (elemento) =>
 {
