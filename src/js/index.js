@@ -58,7 +58,7 @@ const mostrarUltimoCursoAñadido = () =>
 
     if (listadoClases[ultimo].getProfesores[0].length === 0)
     {
-        profesor.textContent = "TODAVIA NO ASIGNADO";
+        profesor.textContent = "Profesor TODAVIA NO ASIGNADO";
     }
     else
     {
