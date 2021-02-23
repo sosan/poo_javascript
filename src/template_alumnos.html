@@ -35,27 +35,27 @@
                 <li class="elemento_ul">
                     <a id="click_cursos" class="link-elemento" href="#">
                         <img class="imagen-svg" src="./images/lecciones.svg" alt="imagen cursos">
-                        <p>Añadir&nbsp;Cursos</p>
+                        <p>Cursos</p>
                     </a>
                 </li>
                 <li class="elemento_ul">
                     <a id="click_alumnos" class="link-elemento" href="#">
                         <img class="imagen-svg" src="./images/alumnos.svg" alt="imagen alumnos">
-                        <p>Añadir&nbsp;Alumnos</p>
+                        <p>Alumnos</p>
                     </a>
     
                 </li>
                 <li class="elemento_ul">
                     <a id="click_profesor" class="link-elemento" href="#">
                         <img class="imagen-svg" src="./images/profesor.svg" alt="imagen profesor">
-                        <p>Añadir&nbsp;Profesores</p>
+                        <p>Profesores</p>
                     </a>
     
                 </li>
                 <li class="elemento_ul">
                     <a id="click_cerrar" class="link-elemento" href="#">
                         <img class="imagen-svg" src="./images/logout.svg" alt="imagen logout">
-                        <p>Asignar&nbsp;Cursos</p>
+                        <p>Reset&nbsp;conexion</p>
                     </a>
     
                 </li>
@@ -63,23 +63,54 @@
             </ul>
         </section>
     </header>
+    
+    <div id="contenido-alumnos">
+        <main class="contenido">
+            <section id="crear-alumno">
+                <form id="formulario-alumnos" action="" >
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
+
+                    <label for="edad">Edad</label>
+                    <input type="number" name="edad" id="edad" placeholder="Edad">
+
+                    <label for="sexo">Sexo</label>
+                    <select name="sexo" id="sexo">
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer">Mujer</option>
+                        <option value="otros">Otros</option>
+                        <option value="nodecir">No decirlo</option>
+                    </select>
+
+                    <button type="submit">Enviar</button>
+
+                </form>
+
+            </section>
+            <section id="ver-alumnos">
+
+            </section>
+        </main>
+
+    </div>
 
 
-
-
-    <main id="main">
-        <div id="divcontenido" class="contenido-dashboard">
+    <div id="contenido-dashboard">
+        <main class="contenido">
             <section id="ultimasclases" class="ultimasclases">
                 <h3>Ultimas Clases Insertadas</h3>
                 <section id="insercion_ultimasclases" class="insercion_ultimasclases">
                     <!-- insercion desde js-->
                     <article class="forma-article">
-                        <img id="rutaimagen" class="imagen-article" src="https://webhostingespanol.com/wp-content/uploads/2015/10/html-logo.png"
+                        <img class="imagen-article" src="https://webhostingespanol.com/wp-content/uploads/2015/10/html-logo.png"
                             alt="imagen">
-                        <p id="titulo" class="titulo-article">Titulo html</p>
-                        <p id="fechainicio" class="titulo-article">Fecha Inicio: 21/01/2021</p>
-                        <p id="profesor" class="profesor-article">Impartido por Profesor</p>
-                        <p id="activo" class="profesor-article">Activo</p>
+                        <p class="titulo-article">Titulo html</p>
+                        <p class="titulo-article">Fecha Inicio: 21/01/2021</p>
+                        <p class="profesor-article">Impartido por Profesor</p>
+                        <p class="profesor-article">Activo</p>
                     </article>
                 </section>
             </section>
@@ -89,33 +120,35 @@
                 <ul class="ul-estadisticas">
                     <li class="elemento-estadisticas">
                         <article class="forma-estadistica">
-                            <p id="total_alumnos" class="titulo-estadistica">0</p>
+                            <p class="titulo-estadistica">1400</p>
                             <p class="subtitulo-estadistica">Total Alumnos</p>
                         </article>
                     </li>
         
                     <li class="elemento-estadisticas">
                         <article class="forma-estadistica">
-                            <p id="total_clases" class="titulo-estadistica">0</p>
+                            <p class="titulo-estadistica">900</p>
                             <p class="subtitulo-estadistica">Total Clases</p>
                         </article>
                     </li>
         
                     <li class="elemento-estadisticas">
                         <article class="forma-estadistica">
-                            <p id="total_profesores" class="titulo-estadistica">0</p>
+                            <p class="titulo-estadistica">1900</p>
                             <p class="subtitulo-estadistica">Total Profesores</p>
                         </article>
                     </li>
                 </ul>
             </section>
-        </div>
-    </main>
+        
+        </main>
+    </div>
 
-        <!-- <main>
-            <h1 id="titulo" class="titulo">CENTRO DE ESTUDIOS</h1>
+        <!-- <main> -->
+            <!-- <h1 id="titulo" class="titulo">CENTRO DE ESTUDIOS</h1> -->
 
-            <form id="formulario">
+            <!-- FORMULARIO -->
+            <!-- <form id="formulario">
                 <label>
                     Nombre:
                     <input type="text" name="nombreCurso" required />
@@ -129,10 +162,11 @@
                     <input type="number" name="cantidadHoras" required />
                 </label>
                 <button type="submit">Nuevo Curso</button>
-            </form>
+            </form> -->
 
-            <section id="curso" class="cursos"></section>
-        </main> -->
+            <!-- GRID de Cursos -->
+            <!-- <section id="curso" class="cursos"></section> -->
+        <!-- </main> -->
 
     <script type="module" src="./js/Persistencia.js"></script>
     <script type="module" src="./js/index.js"></script>
