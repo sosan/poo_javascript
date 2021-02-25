@@ -1,12 +1,22 @@
+//persistencia
+import { listadoAlumnos, listadoClases, listadoProfesores } from "./Persistencia.js";
+
+// importar ui elemento dashboard
+//importar ui elementos
+import { AlumnoElement } from "./webcomponents/AlumnoElement.js";
+import { Dashboard } from "./webcomponents/DashboardElement.js";
+
 // Importar módulos
 import { Alumno } from "./Alumno.js";
 import { Profesor } from "./Profesor.js";
 import { Cursos } from "./Cursos.js";
 import { mostrarCurso } from "./mostrarCurso.js";
 
+
+
+
 // mejor realizar la persistencia desde el navegador con un localstorage, etc...
 //para practicar generamos el html en las secciones necesarias simulando click en otro html
-import { listadoAlumnos, listadoClases, listadoProfesores } from "./Persistencia.js";
 import { textoDashboard, templateAlumnoFormulario, templateProfesorFormulario, templateCurso } from "./Templates.js";
 
 
@@ -30,58 +40,6 @@ let formularioCursos = undefined;
 let formularioProfesor = undefined;
 
 
-const mostrarEstadisticas = () =>
-{
-    const total_alumnos = document.getElementById("total_alumnos");
-    const total_clases = document.getElementById("total_clases");
-    const total_profesores = document.getElementById("total_profesores");
-
-    total_alumnos.textContent = listadoAlumnos.length.toString();
-    total_clases.textContent = listadoClases.length.toString();
-    total_profesores.textContent = listadoProfesores.length.toString();
-
-};
-
-const mostrarUltimoCursoAñadido = () =>
-{
-
-    const titulo = document.getElementById("titulo");
-    const rutaimagen = document.getElementById("rutaimagen");
-    const fechainicio = document.getElementById("fechainicio");
-    const profesor = document.getElementById("profesor");
-    const activo = document.getElementById("activo");
-
-    const ultimo = listadoClases.length - 1;
-    titulo.textContent = listadoClases[ultimo].getNombre.toUpperCase();
-    rutaimagen.src = listadoClases[ultimo].getPoster;
-    fechainicio.textContent = "21/03/2021";
-
-    if (listadoClases[ultimo].getProfesores[0].length === 0)
-    {
-        profesor.textContent = "Profesor TODAVIA NO ASIGNADO";
-    }
-    else
-    {
-        profesor.textContent = "Impartido por " + 
-            listadoClases[ultimo].getProfesores[0][0].nombre + " " + 
-            listadoClases[ultimo].getProfesores[0][0].apellidos;
-
-    }
-
-    
-    if (listadoClases[ultimo].getActivo === true)
-    {
-        activo.textContent = "Activo";
-    }
-    else
-    {
-        activo.textContent = "No Activo";
-    }
-
-};
-
-mostrarUltimoCursoAñadido();
-mostrarEstadisticas();
 
 const activarTab = (elemento) =>
 {
@@ -114,32 +72,6 @@ const crearElementoLi = (cadena, listadoli) =>
 
 };
 
-const crearListadoLiAlumno = (id, apellidos, nombre) =>
-{
-
-    let listadoli = document.getElementById("listado-alumnos");
-
-    crearElementoLi(
-        `<button id="" class="boton-borrar-alumno" name="borrar" value="${id}">Borrar Alumno</button>`,
-        listadoli
-    );
-
-    crearElementoLi(
-        `<button id="" class="boton-ver-alumno" name="ver" value="${id}">Ver Alumno</button>`,
-        listadoli
-    );
-
-    crearElementoLi(
-        `<p class="">${apellidos}</p>`,
-        listadoli
-    );
-
-    crearElementoLi(
-        `<p class="">${nombre}</p>`,
-        listadoli
-    );
-
-};
 
 
 const crearListadoLiProfesor = (id, apellidos, nombre) => {
@@ -217,8 +149,9 @@ dashBoardClick.addEventListener("click", (evento) =>
 
     main.innerHTML = textoDashboard;
 
-    mostrarEstadisticas();
-    mostrarUltimoCursoAñadido();
+    Dashboard.prototype.generarInterfazDashboard();
+    Dashboard.prototype.mostrarUltimoCursoAñadido();
+    Dashboard.prototype.mostrarEstadisticas();
 
 
 });
@@ -301,7 +234,8 @@ alumnosClick.addEventListener("click", (evento) =>
 
     //activamos el tab que hemos hecho click
     activarTab(alumnosClick);
-
+    
+    
     //quitamos el html de main
     const contenido = main.firstElementChild;
     if (contenido !== null) 
@@ -309,63 +243,11 @@ alumnosClick.addEventListener("click", (evento) =>
         main.firstElementChild.remove();
     }
 
-    //mostramos el nuevo html
-    let elementoHTML = document.createElement("div");
-    elementoHTML.innerHTML = templateAlumnoFormulario;
-    let listadoelementos = elementoHTML.children[0].children[1].children[0];
-
-    for (let i = 0; i < listadoAlumnos.length; i++)
-    {
-        listadoelementos.innerHTML += `
-        <li><p class="">${listadoAlumnos[i].getNombre}</p></li>
-        <li><p class="">${listadoAlumnos[i].getApellidos}</p></li>
-        <li><button id="" class="boton-ver-alumno" name="ver" value="${listadoAlumnos[i].getId}">Ver Alumno</button></li>
-        <li><button id="" class="boton-borrar-alumno" name="borrar" value="${listadoAlumnos[i].getId}">Borrar Alumno</button></li>
-        `;
-
-    }
-
-    main.innerHTML = elementoHTML.innerHTML;
-
-    //seteamos las varialbes undefined
-    formularioProfesores = document.getElementById("formulario-alumnos");
-
-    //creamos el evento cuando se envie el formulario
-    formularioProfesores.addEventListener("submit", (evento) =>
-    {
-
-        evento.preventDefault();
-
-        const formularioObtenido = evento.target;
-        
-        //inseramos en la persistencia
-        //Clase alumno - nombre, apellidos, sexo, edad
-        listadoAlumnos.push(
-            new Alumno(
-                listadoAlumnos.length,
-                formularioObtenido.nombre.value,
-                formularioObtenido.apellidos.value,
-                formularioObtenido.edad.value,
-                formularioObtenido.sexo.value,
-                "19/04/1998",
-                "loquesea@gmail.com",
-                true
-            )
-        );
-
-        //actualizamos el listado de Alumnos
-        crearListadoLiAlumno(
-            listadoAlumnos.length,
-            formularioObtenido.apellidos.value,
-            formularioObtenido.nombre.value
-        );
-
-        //reset al formulario
-        formularioObtenido.reset();
-
-
-    });
-
+    AlumnoElement.prototype.disconnectedCallback();
+    
+    //instanciamos un elemento
+    const alumnos = document.createElement("alumno-elemento");
+    main.appendChild(alumnos);
 
 });
 

@@ -138,15 +138,15 @@ const templateCurso = `
     <form id="formulario" class="formulario-cursos">
         <label>
             Nombre:
-            <input class="input-crear-cursos" type="text" name="nombreCurso" required />
+            <input class="input-crear-cursos" type="text" name="nombreCurso" required autocomplete="off" />
         </label>
         <label>
             Imagen:
-            <input class="input-crear-cursos" type="text" name="rutaImagen" required />
+            <input class="input-crear-cursos" type="text" name="rutaImagen" required autocomplete="off" />
         </label>
         <label>
             Horas:
-            <input class="input-crear-cursos" type="number" name="cantidadHoras" required />
+            <input class="input-crear-cursos" type="number" name="cantidadHoras" required autocomplete="off" />
         </label>
         <button class="boton_crear-curso" type="submit">Nuevo Curso</button>
     </form>

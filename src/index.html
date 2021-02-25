@@ -68,17 +68,31 @@
 
 
     <main id="main">
-        <div id="divcontenido" class="contenido-dashboard">
+        <dashboard-elemento>
+            <h3 slot="titulo">Ultimas Clases Insertadas</h3>
+            <!-- hace un efecto raro -->
+            <!-- primero se pone el texto y luego rendiraza el css -->
+            <!-- <p slot="texto_total-alumnos" class="subtitulo-estadistica">Total Alumnos</p> -->
+            <!-- <p slot="texto_total-clases" class="subtitulo-estadistica">Total Clases</p> -->
+            <!-- <p slot="texto_total-profesores" class="subtitulo-estadistica">Total Profesores</p> -->
+        </dashboard-elemento>
+    </main>
+<!-- templates -->
+    <!-- template dashboard -->
+    <template id="dashboardtemplate">
+        <link rel="stylesheet" href="./css/custom_reset.css">
+        <link rel="stylesheet" href="./css/estilos.css">
+        <div class="contenido-dashboard">
             <section id="ultimasclases" class="ultimasclases">
-                <h3>Ultimas Clases Insertadas</h3>
+                <slot name="titulo"></slot> 
                 <section id="insercion_ultimasclases" class="insercion_ultimasclases">
                     <!-- insercion desde js-->
                     <article class="forma-article">
-                        <img id="rutaimagen" class="imagen-article" src="https://webhostingespanol.com/wp-content/uploads/2015/10/html-logo.png"
-                            alt="imagen">
+                        <img id="rutaimagen" class="imagen-article"
+                            src="https://webhostingespanol.com/wp-content/uploads/2015/10/html-logo.png" alt="imagen">
                         <p id="titulo" class="titulo-article">Titulo html</p>
                         <p id="fechainicio" class="titulo-article">Fecha Inicio: 21/01/2021</p>
-                        <p id="profesor" class="profesor-article">Impartido por Profesor</p>
+                        <p id="profesor" class="profesor-article">Impartido por Toni Ferra</p>
                         <p id="activo" class="profesor-article">Activo</p>
                     </article>
                 </section>
@@ -87,52 +101,92 @@
             <section id="estadisticas" class="estadisticas">
                 <h3>Estadisticas</h3>
                 <ul class="ul-estadisticas">
+                    <!-- generado sin for  -->
                     <li class="elemento-estadisticas">
                         <article class="forma-estadistica">
                             <p id="total_alumnos" class="titulo-estadistica">0</p>
-                            <p class="subtitulo-estadistica">Total Alumnos</p>
+                            <!-- <slot name="texto_total-alumnos"></slot> -->
+                            <p slot="texto_total-alumnos" class="subtitulo-estadistica">Total Alumnos</p>
                         </article>
                     </li>
         
                     <li class="elemento-estadisticas">
                         <article class="forma-estadistica">
                             <p id="total_clases" class="titulo-estadistica">0</p>
-                            <p class="subtitulo-estadistica">Total Clases</p>
+                            <!-- <slot name="texto_total-clases"></slot> -->
+                            <p slot="texto_total-clases" class="subtitulo-estadistica">Total Clases</p>
                         </article>
                     </li>
         
                     <li class="elemento-estadisticas">
                         <article class="forma-estadistica">
                             <p id="total_profesores" class="titulo-estadistica">0</p>
-                            <p class="subtitulo-estadistica">Total Profesores</p>
+                            <!-- <slot name="texto_total-profesores"></slot> -->
+                            <p slot="texto_total-profesores" class="subtitulo-estadistica">Total Profesores</p>
                         </article>
                     </li>
                 </ul>
             </section>
         </div>
-    </main>
+    </template>
 
-        <!-- <main>
-            <h1 id="titulo" class="titulo">CENTRO DE ESTUDIOS</h1>
+    <!-- template añadir alumno -->
+    
+    <template id="alumnotemplate">
+        <link rel="stylesheet" href="./css/custom_reset.css">
+        <link rel="stylesheet" href="./css/estilos.css">
 
-            <form id="formulario">
-                <label>
-                    Nombre:
-                    <input type="text" name="nombreCurso" required />
-                </label>
-                <label>
-                    Imagen:
-                    <input type="text" name="rutaImagen" required />
-                </label>
-                <label>
-                    Horas:
-                    <input type="number" name="cantidadHoras" required />
-                </label>
-                <button type="submit">Nuevo Curso</button>
-            </form>
+        <div id="contenido-alumnos" class="contenido-alumnos">
+            <section id="crear-alumno" class="crear-alumno">
+                <h3>CREAR NUEVO ALUMNO</h3>
+                <form id="formulario-alumnos" class="formulario-alumnos" action="">
+                    <label for="nombre">Nombre</label>
+                    <input class="input-crear-alumnos" type="text" name="nombre" id="nombre" placeholder="Nombre" required
+                        autocomplete="off">
+                    <label for="apellidos">Apellidos</label>
+                    <input class="input-crear-alumnos" type="text" name="apellidos" id="apellidos" placeholder="Apellidos"
+                        required autocomplete="off">
+                    <label for="sexo">Sexo</label>
+                    <select class="input-crear-alumnos" name="sexo" id="sexo" required>
+                        <option value="hombre">Hombre</option>
+                        <option value="mujer" selected>Mujer</option>
+                        <option value="otros">Otros</option>
+                        <option value="nodecir">No decirlo</option>
+                    </select>
+                    <label for="edad">Edad</label>
+                    <input class="input-crear-alumnos" type="number" name="edad" id="edad" placeholder="Edad" required
+                        autocomplete="off">
+                    <button class="boton_crear-alumno" type="submit">Enviar</button>
+                </form>
+            </section>
+            <section id="ver-alumnos">
+                <ul id="listado-alumnos" class="listado-alumnos">
+                    <li class="listado-alumnos_elemento">
+                        <p>Apellidos Alumno</p>
+                    </li>
+                    <li class="listado-alumnos_elemento">
+                        <p>Nombre Alumno</p>
+                    </li>
+                    <li class class="listado-alumnos_elemento">
+                        <p>Ver Alumno</p>
+                    </li>
+                    <li class="listado-alumnos_elemento">
+                        <p>Borrar Alumno</p>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </template>
 
-            <section id="curso" class="cursos"></section>
-        </main> -->
+    <template id="alumno-template-li">
+        <!-- <link rel="stylesheet" href="./css/custom_reset.css">
+        <link rel="stylesheet" href="./css/estilos.css"> -->
+        <li><p id="nombre-alumno" class=""></p></li>
+        <li><p id="apellido-alumno" class=""></p></li>
+        <li><button id="boton-ver" class="boton-ver-alumno" name="ver" value="${listadoAlumnos[i].getId}">Ver Alumno</button></li>
+        <li><button id="boton-borrar" class="boton-borrar-alumno" name="borrar" value="${listadoAlumnos[i].getId}">Borrar Alumno</button>
+        </li>
+    </template>
 
     <script type="module" src="./js/Persistencia.js"></script>
     <script type="module" src="./js/index.js"></script>

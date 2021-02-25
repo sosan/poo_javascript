@@ -1,7 +1,7 @@
 import { Usuario } from "./Usuario.js";
 
 // Crear la clase Alumno
-export class Alumno extends Usuario
+class Alumno extends Usuario
 {
     constructor(id, nombre, apellidos, edad, sexo, fechaNacimiento, email, activo)
     {
@@ -12,3 +12,5 @@ export class Alumno extends Usuario
 
     //setters propios
 }
+
+export { Alumno };
